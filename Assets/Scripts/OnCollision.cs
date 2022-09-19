@@ -7,6 +7,7 @@ using UnityEngine.Events;
 /// </summary>
 public class OnCollision : MonoBehaviour
 {
+    public Tilling tilling;
     [Serializable] public class CollisionEvent : UnityEvent<Collision> { }
 
     // When the object enters a collision

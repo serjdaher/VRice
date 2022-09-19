@@ -9,6 +9,8 @@ TagManager:
   - HoeHandle
   - untilled
   - tilled
+  - RiceGrain
+  - SmallRicePlant
   layers:
   - Default
   - TransparentFX
@@ -20,9 +22,9 @@ TagManager:
   - Untilled
   - Tilled
   - Equipment
-  - 
-  - 
-  - 
+  - Rice
+  - Terrain
+  - Teleport
   - 
   - 
   - 
