@@ -601,7 +601,7 @@ MonoBehaviour:
   m_PlayHapticsOnHoverCanceled: 0
   m_HapticHoverCancelIntensity: 0
   m_HapticHoverCancelDuration: 0
-  m_LineType: 1
+  m_LineType: 2
   m_BlendVisualLinePoints: 1
   m_MaxRaycastDistance: 30
   m_RayOriginTransform: {fileID: 0}
@@ -611,10 +611,10 @@ MonoBehaviour:
   m_AdditionalGroundHeight: 0.1
   m_AdditionalFlightTime: 0.5
   m_EndPointDistance: 10
-  m_EndPointHeight: -10
-  m_ControlPointDistance: 4
-  m_ControlPointHeight: 2.5
-  m_SampleFrequency: 20
+  m_EndPointHeight: -12
+  m_ControlPointDistance: 6
+  m_ControlPointHeight: 2
+  m_SampleFrequency: 50
   m_HitDetectionType: 0
   m_SphereCastRadius: 0.1
   m_RaycastMask:
@@ -1390,8 +1390,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2937910574069519198}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.062, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
