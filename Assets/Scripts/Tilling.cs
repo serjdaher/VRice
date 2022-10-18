@@ -1,57 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Tilling : MonoBehaviour
 {
-    // Get all objects from the scene
-    private GameObject[] allObjects;
-
-    private GameObject[] plantCount;
-    //private GameObject[] tilledCount;
-    public GameObject clear;
-    private float clearTimer = 0.0f;
+    [SerializeField] private ParticleSystem debris;
+    private AudioSource _tillingSound;
 
     private void Start()
     {
+        _tillingSound = GetComponent<AudioSource>();
         Physics.IgnoreLayerCollision(3, 9, true);
-        // Get all objects that are tilled and set them to false at the start of the game.
-        allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-        foreach (GameObject go in allObjects)
-        {
-            if(go.layer == 8)
-            {
-                go.gameObject.SetActive(false);
-            }
-        }
-
-        clear = GameObject.Find("Clear");
-        clear.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        plantCount = GameObject.FindGameObjectsWithTag("SmallRicePlant");
-        if (plantCount.Length == 12)
-        {
-            clear.SetActive(true);
-            clearTimer += Time.deltaTime;
-            if (clearTimer >= 10.0f)
-            {
-                clear.SetActive(false);
-                SceneManager.LoadScene("GameScene1");
-            }
-        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 7 && GetComponent<Rigidbody>().velocity.magnitude > 47f)
+        // Get the position of the collided object
+        Vector3 collisionPosition = collision.gameObject.transform.position;
+
+        if (collision.gameObject.layer == 8 && collision.gameObject.GetComponent<MeshRenderer>().enabled == false)
         {
-            collision.transform.GetChild(0).gameObject.SetActive(false);
-            collision.transform.GetChild(1).gameObject.SetActive(true);
+            _tillingSound.Play();
+            DebrisHit(collisionPosition);
+
+            if (GetComponent<Rigidbody>().velocity.magnitude > 47f)
+            {
+                collision.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            }
         }
+    }
+
+    private void DebrisHit(Vector3 position)
+    {
+        debris.transform.position = position;
+        debris.GetComponent<ToggleParticle>().Play();
     }
 }
